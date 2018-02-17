@@ -14,16 +14,17 @@ defmodule NucleotideCount do
   """
   @spec count([char], char) :: non_neg_integer
   def count(strand, nucleotide) do
-    cond do
-      strand == [] -> 0  
-      true -> 
-    end
-
-    
-
+    Enum.count(strand, fn(x) -> x == nucleotide end)
+  
   end
-
-
+  
+  # defp count_duplicates(strand, nucleotide) do
+  #   strand
+  #   |> String.graphemes
+  #   |> Enum.filter(fn(x) -> x == <<nucleotide>> end) 
+  #   |> Enum.count
+  # end
+  
   @doc """
   Returns a summary of counts by nucleotide.
 
@@ -34,6 +35,6 @@ defmodule NucleotideCount do
   """
   @spec histogram([char]) :: map
   def histogram(strand) do
-
+    Map.new(@nucleotides, fn x -> {x, count(strand, x)} end)
   end
 end
