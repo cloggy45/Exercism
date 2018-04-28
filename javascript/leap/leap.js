@@ -13,7 +13,7 @@ Year.prototype.isLeap = function () {
     
     const conditions = [
         year % 4 === 0,
-        year % 100 !== 0
+        year % 100 !== 0,
         ]
     
     return conditions.reduce((a,b) => a && b, true) || (year % 400 == 0);
